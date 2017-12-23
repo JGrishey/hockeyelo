@@ -22,7 +22,7 @@ class App extends Component {
     }
 
     fetchData () {
-        return axios.get('https://gist.githubusercontent.com/JGrishey/ebc5903935181c72ffeea10e123ee60d/raw/f14647fab6a0679355d99bcdca7f7d6bb88df979/results2017-18.json')
+        return axios.get('https://raw.githubusercontent.com/JGrishey/hockeyelo-data/master/data/results2017-18.json')
                     .then((response) => {
                         this.setState({
                             fetching: false,

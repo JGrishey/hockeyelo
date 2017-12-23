@@ -14,7 +14,7 @@ class Today extends Component {
     }
 
     getGames() {
-        axios.get('https://gist.githubusercontent.com/JGrishey/dde3695f6702ffcc6d0a44752e3f653b/raw/061b9b724981a3a98b19aa2b9b5a528e25a70b02/today.json')
+        axios.get('https://raw.githubusercontent.com/JGrishey/hockeyelo-data/master/data/today.json')
             .then((response) => {
                 this.setState({
                     games: response.data

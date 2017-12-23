@@ -11,7 +11,7 @@ class Game extends Component {
                     <tbody>
                         <tr>
                             <td style={{textAlign: "center"}}>
-                                <img height={20} src={this.props.awayTeamLogo}/>
+                                <img style={{maxWidth: '20px', maxHeight: '20px'}} src={this.props.awayTeamLogo}/>
                             </td>
                             <td style={{textAlign: "left"}}>
                                 {this.props.away}
@@ -25,7 +25,7 @@ class Game extends Component {
                         </tr>
                         <tr>
                             <td style={{textAlign: "center"}}>
-                                <img height={20} src={this.props.homeTeamLogo}/>
+                                <img style={{maxWidth: '20px', maxHeight: '20px'}} src={this.props.homeTeamLogo}/>
                             </td>
                             <td style={{textAlign: "left"}}>
                                 {this.props.home}
