@@ -68,7 +68,7 @@ class Today extends Component {
         return (
             <div>
                 <h2 className="text-center mt-2">Today's games</h2>
-                <div className="row justify-content-center mt-2 ml-2 mr-2">
+                <div className="flex-games">
                     {this.state.games.map((game) => {
                         const home = myRe.exec(game.homeTeam)[0]
                         const away = myRe.exec(game.awayTeam)[0]
