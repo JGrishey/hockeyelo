@@ -11,7 +11,7 @@ class Game extends Component {
                 <tbody>
                     <tr>
                         <td style={{textAlign: "center"}}>
-                            <img style={{maxWidth: '20px', maxHeight: '20px'}} src={this.props.awayTeamLogo}/>
+                            <img alt={this.props.away} style={{maxWidth: '20px', maxHeight: '20px'}} src={this.props.awayTeamLogo}/>
                         </td>
                         <td style={{textAlign: "left"}}>
                             {this.props.away}
@@ -22,10 +22,26 @@ class Game extends Component {
                         }}>
                             {Math.round(this.props.awayProb * 100) + "%"}
                         </td>
+                        <td style={{
+                            backgroundColor: "rgba(0,0,0,0.1)",
+                            textAlign: "center"
+                        }}>
+                            {
+                                this.props.final ?
+                                    this.props.awayScore > this.props.homeScore ?
+                                         <span>&#10003; {this.props.awayScore}</span>
+                                    :
+                                        this.props.awayScore
+                                : this.props.current ?
+                                    this.props.awayScore
+                                :
+                                    "TBD"
+                            }
+                        </td>
                     </tr>
                     <tr>
                         <td style={{textAlign: "center"}}>
-                            <img style={{maxWidth: '20px', maxHeight: '20px'}} src={this.props.homeTeamLogo}/>
+                            <img alt={this.props.home} style={{maxWidth: '20px', maxHeight: '20px'}} src={this.props.homeTeamLogo}/>
                         </td>
                         <td style={{textAlign: "left"}}>
                             {this.props.home}
@@ -35,6 +51,22 @@ class Game extends Component {
                             textAlign: "center"
                         }}>
                             {Math.round(this.props.homeProb * 100) + "%"}
+                        </td>
+                        <td style={{
+                            backgroundColor: "rgba(0,0,0,0.1)",
+                            textAlign: "center"
+                        }}>
+                            {
+                                this.props.final ?
+                                    this.props.homeScore > this.props.awayScore ?
+                                         <span>&#10003; {this.props.homeScore}</span>
+                                    :
+                                        this.props.homeScore
+                                : this.props.current ?
+                                    this.props.homeScore
+                                :
+                                    "TBD"
+                            }
                         </td>
                     </tr>
                 </tbody>

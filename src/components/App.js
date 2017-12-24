@@ -27,7 +27,6 @@ class App extends Component {
                         this.setState({
                             fetching: false,
                             data: response.data.map((block) => {
-                                console.log(block)
                                 return {
                                     ...block,
                                     data: block["data"].sort((a, b) => b.elo - a.elo)
@@ -78,7 +77,7 @@ class App extends Component {
                                         >
                                             {this.state.data.map((block, index) => {
                                                 return (
-                                                    <option value={index}>{block["date"]}</option>
+                                                    <option value={index} key={index}>{block["date"]}</option>
                                                 )
                                             })}
                                         </select>

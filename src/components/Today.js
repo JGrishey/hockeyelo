@@ -9,16 +9,33 @@ class Today extends Component {
         super();
 
         this.state = {
-            games: []
+            games: [],
         }
     }
 
     getGames() {
         axios.get('https://raw.githubusercontent.com/JGrishey/hockeyelo-data/master/data/today.json')
-            .then((response) => {
-                this.setState({
-                    games: response.data
-                })
+            .then((probabilities) => {
+                axios.get(`https://statsapi.web.nhl.com/api/v1/schedule?startDate=${probabilities.data.date}&endDate=${probabilities.data.date}&expand=schedule.linescore&site=en_nhl`)
+                    .then((apiResults) => {
+                        let games = probabilities.data.data;
+                        let apiGames = apiResults.data.dates[0].games;
+                        let newState = games.map((game) => {
+                            let apiGame = apiGames.find((v) => v.teams.home.team.name === game.homeTeam);
+                            return {
+                                ...game,
+                                final: apiGame.status.detailedState === "Final",
+                                current: apiGame.status.detailedState === "In Progress",
+                                homeScore: apiGame.teams.home.score,
+                                awayScore: apiGame.teams.away.score
+                            }
+                        })
+                        this.setState({
+                            games: newState
+                        })
+                    }).catch((error) => {
+                        console.error(error);
+                    })
             }).catch((error) => {
                 console.error(error);
             })
@@ -68,8 +85,9 @@ class Today extends Component {
         return (
             <div>
                 <h2 className="text-center mt-2">Today's games</h2>
+                <p className="text-center mt-1">NOTE: Games reflected in this table may not be reflected in the Elo standings below.</p>
                 <div className="flex-games">
-                    {this.state.games.map((game) => {
+                    {this.state.games.map((game, index) => {
                         const home = myRe.exec(game.homeTeam)[0]
                         const away = myRe.exec(game.awayTeam)[0]
 
@@ -81,6 +99,11 @@ class Today extends Component {
                                 awayProb={game.awayProb}
                                 homeTeamLogo={logos[game.homeTeam]}
                                 awayTeamLogo={logos[game.awayTeam]}
+                                final={game.final}
+                                current={game.current}
+                                homeScore={game.homeScore}
+                                awayScore={game.awayScore}
+                                key={index}
                             />
                         )
                     })}

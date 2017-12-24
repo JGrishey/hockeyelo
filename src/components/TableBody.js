@@ -85,7 +85,7 @@ class TableBody extends Component {
                                 }
                                 textAlign="center"
                             />
-                            <Cell content={(<img src={logos[team["name"]]} height={20}/>)} color="#fff" textAlign="center"/>
+                            <Cell content={(<img alt={team["name"]} src={logos[team["name"]]} height={20}/>)} color="#fff" textAlign="center"/>
                             <Cell content={(<span>{name} <span style={{opacity: 0.5, whiteSpace: 'nowrap'}}>{record}</span></span>)} color="#fff" />
                             <Cell content={customParse(playoff) + "%"} color={"rgba(2, 136, 209," + playoff / 100 + ")"} />
                             <Cell content={customParse(division) + "%"} color={"rgba(2, 136, 209," + division / 100 + ")"} />
