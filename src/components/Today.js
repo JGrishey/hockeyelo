@@ -87,26 +87,30 @@ class Today extends Component {
                 <h2 className="text-center mt-2">Today's games</h2>
                 <p className="text-center mt-1">NOTE: Games reflected in this table may not be reflected in the Elo standings below.</p>
                 <div className="flex-games">
-                    {this.state.games.map((game, index) => {
-                        const home = myRe.exec(game.homeTeam)[0]
-                        const away = myRe.exec(game.awayTeam)[0]
+                    {this.state.games.length > 0 ?
+                        this.state.games.map((game, index) => {
+                            const home = myRe.exec(game.homeTeam)[0]
+                            const away = myRe.exec(game.awayTeam)[0]
 
-                        return (
-                            <Game
-                                home={home}
-                                away={away}
-                                homeProb={game.homeProb}
-                                awayProb={game.awayProb}
-                                homeTeamLogo={logos[game.homeTeam]}
-                                awayTeamLogo={logos[game.awayTeam]}
-                                final={game.final}
-                                current={game.current}
-                                homeScore={game.homeScore}
-                                awayScore={game.awayScore}
-                                key={index}
-                            />
-                        )
-                    })}
+                            return (
+                                <Game
+                                    home={home}
+                                    away={away}
+                                    homeProb={game.homeProb}
+                                    awayProb={game.awayProb}
+                                    homeTeamLogo={logos[game.homeTeam]}
+                                    awayTeamLogo={logos[game.awayTeam]}
+                                    final={game.final}
+                                    current={game.current}
+                                    homeScore={game.homeScore}
+                                    awayScore={game.awayScore}
+                                    key={index}
+                                />
+                            )
+                        })
+                    :
+                        <h3>No games today!</h3>
+                    }
                 </div>
             </div>
         )
