@@ -62,11 +62,10 @@ class App extends Component {
         return (
             <div>
                 <Header />
-                <Today />
                 {
                     !this.state.fetching ?
                         (
-                            <div className="main-container">
+                            <div className="container-fluid">
                                 <div className="row justify-content-center mb-2">
                                     <div className="col-12 col-lg-2">
                                         <label style={{textTransform: 'uppercase'}}>Time</label>
@@ -95,7 +94,6 @@ class App extends Component {
                             <div></div>
                         </div>
                 }
-                <Footer />
             </div>
         );
     }

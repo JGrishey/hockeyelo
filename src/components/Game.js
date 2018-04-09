@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Game extends Component {
     render() {
         return (
-            <table className="game-table m-2" style={{
+            <table className="game-table p-2" style={{
                 backgroundColor: "#fff",
                 boxShadow: "0px 0px 3px rgba(0,0,0,0.3)",
                 width: "325px"
